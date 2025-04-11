@@ -1,31 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import './CustomEventsWidget.css';
 
-// Helper function to calculate time difference
-const calculateTimeLeft = (deadline, now) => {
-  const difference = new Date(deadline) - now;
-  let timeLeft = {};
+// Helper function to calculate working days left (Mon-Fri)
+const calculateWorkingDaysLeft = (deadline, now) => {
+  const deadlineDate = new Date(deadline);
+  // Clone 'now' and set to start of today to avoid time-of-day issues
+  const currentDayStart = new Date(now);
+  currentDayStart.setHours(0, 0, 0, 0);
+  
+  // Set deadline to end of day for inclusion
+  deadlineDate.setHours(23, 59, 59, 999);
 
-  if (difference > 0) {
-    timeLeft = {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  } else {
-    return null; // Deadline passed
+  if (deadlineDate <= currentDayStart) {
+    return 0; // Deadline is today or passed
   }
 
-  // Format the output string
-  let formatted = '';
-  if (timeLeft.days > 0) formatted += `${timeLeft.days}d `;
-  if (timeLeft.hours > 0 || timeLeft.days > 0) formatted += `${timeLeft.hours}h `;
-  if (timeLeft.minutes > 0 || timeLeft.hours > 0 || timeLeft.days > 0) formatted += `${timeLeft.minutes}m `;
-  formatted += `${timeLeft.seconds}s`;
+  let count = 0;
+  const tempDate = new Date(currentDayStart);
 
+  // Iterate from tomorrow up to the deadline date
+  while (tempDate < deadlineDate) {
+      tempDate.setDate(tempDate.getDate() + 1);
+      const dayOfWeek = tempDate.getDay(); // 0 = Sunday, 6 = Saturday
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) { // Monday to Friday
+          count++;
+      }
+      // Safety break for infinite loops, though unlikely with date logic
+      if (count > 365 * 5) break; 
+  }
+
+  return count;
+};
+
+// Helper function to calculate time difference (Keep for potential future use or remove)
+/*
+const calculateTimeLeft = (deadline, now) => {
+{{ ... }}
   return formatted.trim() || '0s'; // Ensure we show something if less than 1s
 };
+*/
 
 const CustomEventsWidget = ({ currentTime }) => {
   const MAX_EVENTS = 5;
@@ -103,33 +116,45 @@ const CustomEventsWidget = ({ currentTime }) => {
           </button>
       )}
       <div className="widget-content">
-        {events.length === 0 && !showForm && (
-          <p className="no-events-message">Click the '+' to add an event.</p>
+        {events.length === 0 ? (
+          <p className="no-events-message">No custom events added yet.</p>
+        ) : (
+          <ul className="event-list">
+            {events.map(event => {
+              const workingDaysLeft = calculateWorkingDaysLeft(event.deadline, currentTime);
+              const isExpired = workingDaysLeft <= 0;
+
+              return (
+                <li key={event.id} className={`event-item ${isExpired ? 'expired' : ''}`}>
+                  <div className="event-details">
+                    <span className="event-name">{event.name}</span>
+                    {/* Replace text countdown with dots */}
+                    <div className="working-days-container">
+                      {isExpired ? (
+                        <span className="expired-text">Expired</span>
+                      ) : (
+                        // Render dots for remaining working days
+                        Array.from({ length: workingDaysLeft }).map((_, index) => (
+                          <div key={index} className="working-day-dot" title={`${workingDaysLeft} working day(s) left`}></div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <button
+                    className="delete-event-button"
+                    onClick={() => handleDeleteEvent(event.id)}
+                    title="Delete Event"
+                  >
+                      &times; {/* Simple 'x' character */}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         )}
-
-        <ul className="event-list">
-          {events.map(event => {
-            const timeLeft = calculateTimeLeft(event.deadline, currentTime);
-            return (
-              <li key={event.id} className="event-item">
-                <div className="event-details">
-                  <span className="event-name">{event.name}</span>
-                  <span className={`event-countdown ${!timeLeft ? 'expired' : ''}`}>
-                    {timeLeft ? timeLeft : 'Expired'}
-                  </span>
-                </div>
-                <button
-                  className="delete-event-button"
-                  onClick={() => handleDeleteEvent(event.id)}
-                  title="Delete Event"
-                >
-                    &times; {/* Simple 'x' character */}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
+        {events.length > 0 && (
+          <div className="working-days-legend">1 dot = 1 working day</div>
+        )}
         {showForm && (
           <div className="form-overlay">
             <form onSubmit={handleAddEvent} className="add-event-form">

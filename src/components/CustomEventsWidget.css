@@ -57,25 +57,70 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-light);
+  transition: opacity 0.3s ease;
 }
 
 .event-item:last-child {
   border-bottom: none;
 }
 
+.event-item.expired {
+  opacity: 0.6;
+}
+
+.event-item.expired .event-name {
+  text-decoration: line-through;
+}
+
 .event-details {
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-right: var(--spacing-sm);
+  align-items: center; /* Vertically align name and dots/text */
+  justify-content: flex-start; /* Align name and dots to the start (left) */
+  flex-grow: 1; /* Allow details to take available space */
+  margin-right: var(--spacing-md); /* Space before delete button */
+  gap: var(--spacing-md); /* Space between name and dots */
+  overflow: hidden; /* Prevent long names from breaking layout */
 }
 
 .event-name {
-  font-weight: 500;
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
-  word-break: break-word; /* Prevent long names from overflowing */
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Handle long event names */
+}
+
+.working-days-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow dots to wrap */
+  gap: 4px; /* Spacing between dots */
+  align-items: center;
+  justify-content: flex-start; /* Align dots to the start (left) */
+  flex-shrink: 0; /* Prevent container from shrinking */
+  /* max-width: 60%; Remove or adjust if causing unwanted wrapping */
+}
+
+.working-day-dot {
+  width: 10px; /* Slightly smaller than week dots */
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-accent); 
+  transition: background-color 0.2s ease;
+}
+
+.working-days-legend {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: auto; /* Push to the bottom of the flex container */
+  padding-top: var(--spacing-sm); /* Add some space above it */
+}
+
+.expired-text {
+  font-size: 0.9em;
+  color: var(--color-text-secondary);
+  font-style: italic;
 }
 
 .event-countdown {
