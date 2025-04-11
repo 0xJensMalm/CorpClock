@@ -1,0 +1,223 @@
+.custom-events-widget {
+  position: relative; /* Needed for absolute positioning of add button and overlay */
+  display: flex; /* Make it a flex container */
+  flex-direction: column; /* Stack title, content vertically */
+  min-height: 200px; /* Give it a minimum height so it doesn't collapse */
+}
+
+.add-event-button {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.add-event-button:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  transform: scale(1.1);
+}
+
+.custom-events-widget > .widget-content { /* Target direct child */
+  flex-grow: 1; /* Allow content area to expand */
+  display: flex; /* Use flex for internal layout */
+  flex-direction: column; /* Stack list/message and overlay */
+}
+
+.no-events-message {
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-style: italic;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Allow list to take up available space */
+  /* max-height: 200px; Remove fixed max-height to allow growth */
+  overflow-y: auto; /* Add scroll if needed */
+  margin-top: var(--spacing-sm);
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-right: var(--spacing-sm);
+}
+
+.event-name {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+  word-break: break-word; /* Prevent long names from overflowing */
+}
+
+.event-countdown {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.event-countdown.expired {
+  color: var(--color-accent); /* Use accent color for expired */
+  font-style: italic;
+}
+
+.delete-event-button {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 1.5rem; /* Make the 'x' bigger */
+  padding: 0 var(--spacing-sm);
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.delete-event-button:hover {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+/* Form Overlay */
+.form-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Above the add button */
+  border-radius: var(--border-radius-md); /* Match widget */
+  padding: var(--spacing-lg);
+}
+
+.add-event-form {
+  background-color: var(--color-surface);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 350px;
+  color: var(--color-text-primary);
+}
+
+.add-event-form h4 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+}
+
+.add-event-form .form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.add-event-form label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.add-event-form input[type="text"],
+.add-event-form input[type="datetime-local"] {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background); /* Use main background for contrast */
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+.add-event-form input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-light-transparent);
+}
+
+.add-event-form .form-actions {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.add-event-form button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.add-event-form .confirm-button {
+  background-color: var(--color-accent);
+  color: #fff; /* Assuming accent is dark enough */
+}
+
+.add-event-form .confirm-button:hover {
+  background-color: var(--color-accent-dark); /* Needs theme variable */
+}
+
+.add-event-form .cancel-button {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.add-event-form .cancel-button:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+/* Custom scrollbar for event list if needed */
+.event-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.event-list::-webkit-scrollbar-track {
+  background: var(--color-surface);
+  border-radius: 3px;
+}
+
+.event-list::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+.event-list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}

@@ -6,6 +6,7 @@ import MonthWidget from './components/MonthWidget'
 import QuarterWidget from './components/QuarterWidget'
 import YearWidget from './components/YearWidget'
 import LifeWidget from './components/LifeWidget'
+import CustomEventsWidget from './components/CustomEventsWidget'
 import themes, { applyTheme, getRandomTheme, getNextTheme, getPrevTheme } from './themes'
 
 function App() {
@@ -82,7 +83,7 @@ function App() {
     <div className="app-container">
       <header>
         <h1 className="app-title">Corp<span>Clock</span></h1>
-        <p className="subtitle">Where time meets productivity in the corporate void</p>
+        <p className="subtitle">Time tracker</p>
         
         <div className={`theme-controls ${isThemeControlsActive ? 'active' : ''}`}>
           <button 
@@ -158,6 +159,7 @@ function App() {
         <QuarterWidget currentTime={currentTime} />
         <YearWidget currentTime={currentTime} />
         <LifeWidget currentTime={currentTime} />
+        <CustomEventsWidget currentTime={currentTime} />
       </div>
     </div>
   )
