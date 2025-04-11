@@ -1,60 +1,32 @@
 :root {
-  /* Light Theme Variables */
-  --light-color-background: #ffffff;
-  --light-color-surface: #f7f6f3;
-  --light-color-surface-hover: #eae7e0;
-  --light-color-border: #e0e0e0;
-  --light-color-text-primary: #37352f;
-  --light-color-text-secondary: #6b6b6b;
-  --light-color-accent: #2383e2;
-  --light-color-accent-light: #e9f2fd;
+  /* Default theme variables - will be overridden by JS */
+  --color-background: #171717;
+  --color-surface: #232323;
+  --color-surface-hover: #333333;
+  --color-border: #3a3a3a;
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #b0b0b0;
+  --color-accent: #3b8eea;
+  --color-accent-light: #1e3a5f;
   
-  /* Dark Theme Variables */
-  --dark-color-background: #191919;
-  --dark-color-surface: #252525;
-  --dark-color-surface-hover: #333333;
-  --dark-color-border: #444444;
-  --dark-color-text-primary: #e6e6e6;
-  --dark-color-text-secondary: #a0a0a0;
-  --dark-color-accent: #3b8eea;
-  --dark-color-accent-light: #1e3a5f;
-  
-  /* Default to Dark Theme */
-  --color-background: var(--dark-color-background);
-  --color-surface: var(--dark-color-surface);
-  --color-surface-hover: var(--dark-color-surface-hover);
-  --color-border: var(--dark-color-border);
-  --color-text-primary: var(--dark-color-text-primary);
-  --color-text-secondary: var(--dark-color-text-secondary);
-  --color-accent: var(--dark-color-accent);
-  --color-accent-light: var(--dark-color-accent-light);
-  
+  /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   
+  /* Border radius */
   --border-radius-sm: 3px;
   --border-radius-md: 6px;
   --border-radius-lg: 8px;
   
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.25);
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.25);
 
   /* Theme Transition */
   --transition-speed: 0.3s;
-}
-
-.light-theme {
-  --color-background: var(--light-color-background);
-  --color-surface: var(--light-color-surface);
-  --color-surface-hover: var(--light-color-surface-hover);
-  --color-border: var(--light-color-border);
-  --color-text-primary: var(--light-color-text-primary);
-  --color-text-secondary: var(--light-color-text-secondary);
-  --color-accent: var(--light-color-accent);
-  --color-accent-light: var(--light-color-accent-light);
 }
 
 * {
@@ -71,11 +43,13 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 button {
