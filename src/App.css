@@ -2,6 +2,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-lg);
+  min-height: 100%; /* Ensure it fills the available height */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
 }
 
 header {
