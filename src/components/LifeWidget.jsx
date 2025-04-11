@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './LifeWidget.css';
 
 const LifeWidget = ({ currentTime }) => {
   const [lifeProgress, setLifeProgress] = useState(0);
@@ -66,7 +67,7 @@ const LifeWidget = ({ currentTime }) => {
       <div className="widget-content">
         {isConfigured ? (
           <>
-            <div className="date-display" style={{ fontSize: '1.25rem' }}>
+            <div className="birthdate-display">
               {new Date(birthdate).toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long', 
@@ -74,15 +75,7 @@ const LifeWidget = ({ currentTime }) => {
               })}
               <button 
                 onClick={resetConfig}
-                style={{ 
-                  marginLeft: '8px', 
-                  fontSize: '0.75rem', 
-                  color: 'var(--color-text-secondary)',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  textDecoration: 'underline'
-                }}
+                className="reset-button"
               >
                 Reset
               </button>
@@ -95,14 +88,14 @@ const LifeWidget = ({ currentTime }) => {
               ></div>
             </div>
             
-            <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+            <div className="life-progress-text">
               {lifeProgress.toFixed(1)}% of estimated life complete
             </div>
           </>
         ) : (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div>
-              <label htmlFor="birthdate" style={{ display: 'block', marginBottom: '4px', fontSize: '0.875rem' }}>
+          <form onSubmit={handleSubmit} className="life-widget-form">
+            <div className="form-group">
+              <label htmlFor="birthdate" className="form-label">
                 Your birthdate:
               </label>
               <input 
@@ -111,17 +104,12 @@ const LifeWidget = ({ currentTime }) => {
                 value={birthdate}
                 onChange={(e) => setBirthdate(e.target.value)}
                 required
-                style={{ 
-                  width: '100%', 
-                  padding: '8px', 
-                  borderRadius: '4px',
-                  border: '1px solid var(--color-border)'
-                }}
+                className="form-input-date"
               />
             </div>
             
-            <div>
-              <label htmlFor="lifeExpectancy" style={{ display: 'block', marginBottom: '4px', fontSize: '0.875rem' }}>
+            <div className="form-group">
+              <label htmlFor="lifeExpectancy" className="form-label">
                 Life expectancy (years): {lifeExpectancy}
               </label>
               <input 
@@ -131,21 +119,13 @@ const LifeWidget = ({ currentTime }) => {
                 max="120"
                 value={lifeExpectancy}
                 onChange={(e) => setLifeExpectancy(parseInt(e.target.value))}
-                style={{ width: '100%' }}
+                className="form-input-range"
               />
             </div>
             
             <button 
               type="submit"
-              style={{ 
-                padding: '8px 16px',
-                backgroundColor: 'var(--color-accent)',
-                color: 'white',
-                borderRadius: '4px',
-                border: 'none',
-                cursor: 'pointer',
-                alignSelf: 'flex-start'
-              }}
+              className="form-submit-button"
             >
               Save
             </button>

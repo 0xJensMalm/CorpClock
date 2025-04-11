@@ -1,0 +1,127 @@
+.life-widget-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* Use theme variable */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs); /* Use theme variable */
+  font-size: 0.9rem;
+  color: var(--color-text-secondary); /* Use theme variable */
+}
+
+.form-input-date,
+.form-input-range {
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.form-input-date {
+  padding: var(--spacing-sm); /* Use theme variable */
+  border-radius: var(--border-radius-sm); /* Use theme variable */
+  border: 1px solid var(--color-border); /* Use theme variable */
+  background-color: var(--color-surface); /* Use theme variable */
+  color: var(--color-text-primary); /* Use theme variable */
+  font-size: 1rem;
+}
+
+.form-input-date:focus {
+  outline: none;
+  border-color: var(--color-accent); /* Use theme variable */
+  box-shadow: 0 0 0 2px var(--color-accent-light-transparent); /* Subtle focus ring */
+}
+
+/* Basic styling for range input */
+.form-input-range {
+  cursor: pointer;
+  height: 20px; /* Make it easier to click */
+  background-color: transparent; /* Hide default track */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Range Track Styling (Webkit) */
+.form-input-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: var(--color-surface-hover); /* Use theme variable */
+  border-radius: 3px;
+  border: 1px solid var(--color-border); /* Use theme variable */
+}
+
+/* Range Thumb Styling (Webkit) */
+.form-input-range::-webkit-slider-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--color-accent); /* Use theme variable */
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6px; /* Center thumb vertically */
+  border: 1px solid var(--color-surface); /* Optional border */
+}
+
+/* Range Track Styling (Firefox) */
+.form-input-range::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: var(--color-surface-hover); /* Use theme variable */
+  border-radius: 3px;
+  border: 1px solid var(--color-border); /* Use theme variable */
+}
+
+/* Range Thumb Styling (Firefox) */
+.form-input-range::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--color-accent); /* Use theme variable */
+  cursor: pointer;
+  border: 1px solid var(--color-surface); /* Optional border */
+}
+
+
+.form-submit-button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-accent);
+  color: #fff; /* Assuming accent is dark enough */
+  border-radius: var(--border-radius-sm);
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.form-submit-button:hover {
+  background-color: var(--color-accent-dark); /* Use theme variable if available, or darken */
+}
+
+.reset-button {
+  margin-left: var(--spacing-sm);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.reset-button:hover {
+  color: var(--color-text-primary);
+}
+
+.birthdate-display {
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.life-progress-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
