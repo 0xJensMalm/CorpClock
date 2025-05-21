@@ -82,8 +82,8 @@ function App() {
   return (
     <div className="app-container">
       <header>
-        <h1 className="app-title">Corp<span>Clock</span></h1>
-        <p className="subtitle">Time tracker</p>
+        <h1 className="app-title">What <span> time </span>Is it?</h1>
+        {/* <p className="subtitle">Time tracker</p> */}
         
         <div className={`theme-controls ${isThemeControlsActive ? 'active' : ''}`}>
           <button 
@@ -156,6 +156,7 @@ function App() {
         <DayWidget currentTime={currentTime} />
         <WeekWidget currentTime={currentTime} />
         <MonthWidget currentTime={currentTime} />
+        {/* <PaydayWidget /> */}
         <QuarterWidget currentTime={currentTime} />
         <YearWidget currentTime={currentTime} />
         <LifeWidget currentTime={currentTime} />

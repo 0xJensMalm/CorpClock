@@ -1,0 +1,100 @@
+.payday-widget {
+  display: flex;
+  align-items: center;
+  background-color: var(--widget-background-color);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: var(--widget-text-color);
+}
+
+.payday-widget .widget-icon {
+  font-size: 2.5rem; /* Increased size */
+  margin-right: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.payday-widget .widget-icon:hover {
+  transform: scale(1.1);
+}
+
+.payday-widget .widget-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.payday-widget .widget-label {
+  font-size: 0.9em;
+  color: var(--widget-label-color);
+  margin: 0 0 5px 0;
+}
+
+.payday-widget .widget-value {
+  font-size: 1.4em; /* Increased size */
+  font-weight: 500;
+  color: var(--widget-value-color);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.payday-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.payday-input-container input[type='number'] {
+  padding: 8px;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 5px;
+  background-color: var(--input-background-color, #fff);
+  color: var(--input-text-color, #333);
+  width: 180px; /* Adjust as needed */
+}
+
+.payday-input-container button {
+  padding: 8px 12px;
+  background-color: var(--button-primary-bg, #007bff);
+  color: var(--button-primary-text, white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.payday-input-container button.cancel-button {
+  background-color: var(--button-secondary-bg, #6c757d);
+}
+
+.payday-input-container button:hover {
+  opacity: 0.9;
+}
+
+.payday-setup button, 
+.change-payday-button {
+  padding: 8px 12px;
+  background-color: var(--button-primary-bg, #007bff);
+  color: var(--button-primary-text, white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.change-payday-button {
+    background-color: var(--button-secondary-bg, #6c757d);
+    font-size: 0.8em;
+    padding: 6px 10px;
+}
+
+.payday-setup button:hover,
+.change-payday-button:hover {
+  opacity: 0.9;
+}
+
+.payday-countdown {
+  text-align: left;
+}

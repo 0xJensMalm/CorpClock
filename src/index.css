@@ -33,7 +33,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: background-color var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 
 html, 

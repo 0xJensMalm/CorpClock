@@ -394,3 +394,115 @@ header {
     height: 26px;
   }
 }
+
+/* Styles for Payday Tracker integrated into MonthWidget */
+.month-widget .payday-section {
+  margin-top: 10px; /* Adjusted margin */
+  /* padding-top: 15px; Removed */
+  /* border-top: 1px solid var(--border-color, #eee); Removed separator line */
+}
+
+.month-widget .payday-header {
+  display: inline-flex; /* Allows icon to be inline with prompt text if it were a sibling */
+  align-items: center;
+  margin-bottom: 8px; /* Spacing if input appears below */
+  vertical-align: middle; /* Align icon better with adjacent text if any */
+}
+
+.month-widget .payday-icon {
+  font-size: 1.6rem; /* Slightly adjusted size */
+  /* margin-right: 10px; Remove, prompt text has its own margin */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.month-widget .payday-icon:hover {
+  transform: scale(1.1);
+}
+
+/* .month-widget .payday-title was removed from JSX */
+
+.month-widget .payday-input-area {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Reduced gap */
+  margin-bottom: 10px;
+  /* If icon is in .payday-header (block), this will be on next line */
+  /* If .payday-header is inline-flex, this might also need to be inline-flex to sit next to it, or clear if below */
+  /* Current JSX structure has .payday-header, then .payday-input-area as siblings */
+  /* Making .payday-header inline-flex and .payday-input-area display:flex should work for layout. */
+  /* The prompt text <p> has inline styling making it appear next to icon if possible. */
+}
+
+.month-widget .payday-input {
+  padding: 6px 8px; /* Compact padding */
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 4px;
+  background-color: var(--input-background-color, #fff);
+  color: var(--input-text-color, #333);
+  width: 70px; /* Compact width */
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.month-widget .payday-set-button,
+.month-widget .payday-cancel-button {
+  padding: 6px 10px; /* Compact padding */
+  background-color: var(--button-primary-bg, #007bff);
+  color: var(--button-primary-text, white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em; /* Compact font */
+  transition: background-color 0.2s ease;
+}
+
+.month-widget .payday-cancel-button {
+  background-color: var(--button-secondary-bg, #6c757d);
+}
+
+.month-widget .payday-set-button:hover,
+.month-widget .payday-cancel-button:hover {
+  opacity: 0.9;
+}
+
+/* .month-widget .payday-countdown-display .widget-value was removed from JSX */
+
+/* Remove these as PaydayWidget now uses generic .progress-container and .progress-bar classes */
+/* .month-widget .payday-progress-container {
+  height: 8px; 
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: var(--progress-bg-color, #e9ecef); 
+  border-radius: var(--progress-border-radius, 4px); 
+} */
+
+/* .month-widget .payday-progress-bar {
+  background-color: var(--accent-color); 
+  height: 100%;
+  border-radius: var(--progress-border-radius, 4px); 
+  transition: width 0.3s ease-in-out;
+} */
+
+/* Adjust layout for icon and prompt text if needed */
+/* The <p class="payday-prompt-text"> has inline styles: */
+/* style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', cursor: 'pointer', display: 'inline-block', marginLeft: '10px' }} */
+/* This will make it sit next to the .payday-header (containing the icon) if .payday-header is also inline or inline-flex */
+
+.month-widget .widget-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+/* Ensure consistent spacing */
+.month-widget .widget-content > div:not(:last-child):not(.payday-section) {
+    margin-bottom: 8px; 
+}
+.month-widget .payday-section > div:not(:last-child) {
+    margin-bottom: 8px; /* Spacing within payday section elements like header and input-area */
+}
+
+.month-widget .date-display + .progress-container {
+    margin-top: 5px; 
+}
